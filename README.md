@@ -16,6 +16,7 @@ Please note: The display is not responsive and is best viewed on larger screens.
 
 - git clone https://github.com/C00ki35/AmazonClone.git
 - cd Amazon-clone
+- npm intstall
 - npm start
 
 
