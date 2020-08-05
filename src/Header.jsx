@@ -18,6 +18,13 @@ const Header = () => {
       auth.signOut();
     }
   };
+
+  let style;
+  if (basketItemsTotal == 0) {
+    style = "header__optionLineOneBasket header__basketCount";
+  } else {
+    style = "header__optionLineOneBasket header__optionBasketItemAdded";
+  }
   return (
     <nav className="header">
       <Link to="/">
@@ -60,7 +67,9 @@ const Header = () => {
         <Link to="/checkout" className="header__link">
           <div className="header__optionBasket">
             <ShoppingBasketIcon style={{ fontSize: 35 }} />
-            <span className="header__optionLineOneBasket header__basketCount">
+
+            <span className={style}>
+              {console.log(style)}
               {basketItemsTotal}
             </span>
           </div>

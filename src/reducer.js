@@ -41,13 +41,13 @@ const reducer = (state, action) => {
     case "SET_USER":
       return { ...state, user: action.user };
     case "ADD_TO_BASKET":
-      console.log(newBasket);
       if (newBasket.length === 0) {
         return { ...state, basket: [...state.basket, action.payload] };
       }
       if (newBasket.length !== 0) {
         for (let i = 0; i < newBasket.length; i++) {
           if (newBasket[i].id === action.payload.id) {
+            console.log(action.payload.id);
             newBasket[i].quantity += 1;
             return { ...state, basket: newBasket };
           }

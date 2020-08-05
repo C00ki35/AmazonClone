@@ -10,6 +10,7 @@ import { auth } from "./firebase";
 import Footer from "./Footer";
 import ProductInfo from "./ProductInfo";
 import AdBar from "./AdBar";
+import Search from "./Search";
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -44,7 +45,11 @@ function App() {
           <Login />
           <Footer />
         </Route>
-
+        <Route path="/search">
+          <Header />
+          <Search />
+          <Footer />
+        </Route>
         <Route path="/">
           <Header />
           <Home />

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./css/Login.css";
 import { auth } from "./firebase";
-import { useStateValue } from "./StateProvider";
 
 const Login = () => {
   const history = useHistory();
@@ -19,23 +18,6 @@ const Login = () => {
         alert(err.message);
       });
   };
-
-  // const addSomething = () => {
-  //   db.collection("shop-products")
-  //     .doc("Test")
-  //     .set({
-  //       name: "Los Angeles",
-  //       state: "CA",
-  //       country: "USA",
-  //     })
-  //     .then(function () {
-  //       console.log("Document successfully written!");
-  //     })
-  //     .catch(function (error) {
-  //       console.log("Not working");
-  //       //console.error("Error writing document: ", error);
-  //     });
-  // };
 
   const register = (event) => {
     event.preventDefault();

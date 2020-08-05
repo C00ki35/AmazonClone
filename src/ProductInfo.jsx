@@ -1,4 +1,4 @@
-import React, { get } from "react";
+import React from "react";
 import { useStateValue } from "./StateProvider";
 import { useParams } from "react-router-dom";
 import "./css/ProductInfo.css";
@@ -27,15 +27,13 @@ const ProductInfo = (props) => {
   }
 
   const getProduct = async (id) => {
-    id = parseInt(id.replace(":", ""));
-
-    const result = await db
-      .collection("shop-products")
-      .where("id", "==", id)
-      .get();
-    result.forEach((doc) => {
-      product.push(doc.data());
-    });
+    id = id.replace(":", "");
+    const doc = await db.collection("shop-products").doc(id).get();
+    if (!doc.exists) {
+      console.log("No such document!");
+    } else {
+      product.push({ id, ...doc.data() });
+    }
   };
 
   useEffect(() => {
@@ -47,6 +45,22 @@ const ProductInfo = (props) => {
       });
     });
   }, []);
+
+  const today = new Date();
+  const mlist = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   return (
     <>
@@ -75,7 +89,15 @@ const ProductInfo = (props) => {
                 {Array(viewedProduct[0].rating)
                   .fill()
                   .map((_) => {
-                    return <p>⭐️</p>;
+                    return (
+                      <span
+                        role="img"
+                        aria-label="stars"
+                        style={{ fontSize: 10 }}
+                      >
+                        ⭐️
+                      </span>
+                    );
                   })}
               </div>
               <Divider />
@@ -83,8 +105,29 @@ const ProductInfo = (props) => {
                 <small>Price: £ </small>
                 <p> {viewedProduct[0].price}</p>
               </div>
+              <p>
+                <strong>Details:</strong>
+              </p>
+              <p>
+                <small>{viewedProduct[0].details}</small>
+              </p>
             </div>
             <div className="productInfo__addtocart">
+              <div className="productInfo__checkoutPrice">
+                £{viewedProduct[0].price}
+              </div>
+              <p>
+                <strong>FREE Delivery</strong>
+              </p>
+              <p>
+                Delivery Details Arrives: {`${new Date().getDate() + 2} `}
+                {`${mlist[today.getMonth()]}`}
+                <p>
+                  Details <strong>Fastest delivery:</strong> Tomorrow Order
+                  within 7 hrs 21 mins Details
+                </p>
+                <p className="productInfo__stock">In Stock</p>
+              </p>
               <button
                 onClick={() => {
                   addToBasket();

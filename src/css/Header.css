@@ -37,6 +37,13 @@
   border-radius: 2px 0px 0px 2px;
 }
 
+input:focus {
+  outline-color: #cd9042;
+  outline-style: solid;
+  outline-width: 3px;
+  box-shadow: 0 0 2pt 2pt #cd9042;
+}
+
 .header__nav {
   display: flex;
   justify-content: space-evenly;
@@ -63,6 +70,15 @@
 .header__optionBasket {
   display: flex;
   align-items: center;
+}
+.header__optionBasketItemAdded {
+  display: flex;
+  align-items: center;
+  color: #cd9042;
+  padding-left: 16px;
+  padding-right: 12px;
+  font-weight: 800;
+  font-size: 23px;
 }
 .header__basketCount {
   margin-left: 10px;

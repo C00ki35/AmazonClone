@@ -6,14 +6,21 @@ import { useStateValue } from "./StateProvider";
 import Carousel from "react-bootstrap/Carousel";
 
 const Home = () => {
-  const [{ loaded, products, basket }, dispatch] = useStateValue();
+  const [{ loaded, products }, dispatch] = useStateValue();
   let prods = [];
   useEffect(() => {
     const fetchProducts = async () => {
       const snapshot = await db.collection("shop-products").get();
       snapshot.forEach((doc) => {
-        prods.push(doc.data());
+        let productObject = { id: doc.id, ...doc.data() };
+        prods.push(productObject);
       });
+      console.dir(prods);
+      console.log(
+        prods.forEach((element) => {
+          console.log(element);
+        })
+      );
     };
 
     fetchProducts().then((done) => {
