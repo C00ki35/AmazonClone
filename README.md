@@ -20,7 +20,7 @@ Please note: The display is not responsive and is best viewed on larger screens.
 
 
 The hosted version of the game can be found here: 
-https://shopclone-a2700.web.app/login
+https://shopclone-a2700.web.app
 
 
 ### `Tutorial link:`
